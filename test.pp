@@ -1,4 +1,5 @@
 $pass='password'
+$admPass='admPassword'
 $salk='salt'
 group { "dehus":
 	ensure => "present",
