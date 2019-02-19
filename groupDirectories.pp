@@ -11,10 +11,14 @@ file { '/home/sales':
 	owner => 'abernard',
 	group => 'sales',
 	mode => '2770',
+	source => 'file:/etc/skel',
+	recurse => 'remote',
 }
 file { '/home/accounting':
 	ensure => "directory",
 	owner => 'amartin',
 	group => 'accounting',
 	mode => '2770',
+	source => 'file:/etc/skel',
+	recurse => 'remote',
 }
