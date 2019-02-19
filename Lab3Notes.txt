@@ -1,0 +1,40 @@
+Create a new volume group;
+-First, I needed to initiaize /dev/sdb as a physcial volume:
+	-pvcreate /dev/sdb
+-create the new volume group "vg_new" built up of the phsyical volume I initialized:
+	-vgcreate vg_new /dev/sdb
+Create the logical volumes:
+-created the logical volume "lv_home" and "lv_tmp" for home and tmp root directory with size of 4GB and 1GB, respectively:
+	-lvcreate -n lv_home --size 4g vg_new
+	-lvcreate -n lv_tmp --size 1g vg_new
+Make two xfs filessystmes:
+-make the xfs filesystem for "lv_home" and "lv_tmp" logical volume:
+	-mkfs.xfs /dev/vg_new/lv_home
+	-mkfs.xfs /dev/vg_new/lv_tmp
+Mount the new filesystems to temporary mount points:
+-first, make directories in root directory as temporary mounts for "lv_home" and "lv_tmp" logical volume:
+	-mkdir /tmpMount_home
+	-mkdir /tmpMount_tmp
+-Now we can mount "lv_home" and "lv_tmp" logical volume:
+	-mount /dev/vg_new/lv_home /tmpMount_home
+	-mount /dev/vg_new/lv_tmp /tmpMount_tmp
+copy the existing contents from the old disk to the new filesystems:
+-copied contents from /home and /tmp to appropriate logical volume using tags -r, for inclusion of directories, and -p, to keep files and directories attributes:
+	-cp -pr /home/. /tmpMount_home
+	-cp -pr /tmp/. /tmpMount_tmp
+mount the new logical volumes where they belong and update /etc/fstab so they are remounted there on reboot:
+-Now, we can unmount the logical volumes since content has be copied to them:
+	-umount /dev/mapper/vg_new-lv_home
+	-umount /dev/mapper/vg_new-lv_tmp
+-before we move on it's helpful to remove the temporary mount directories:
+	-rm -rf /tmpMount_home
+	-rm -rf /tmpMount_tmp
+-Now we can mount appropriate logical volume to /home and /tmp directory:
+	-mount /dev/vg_new/lv_home /home
+	-mount /dev/vg_new/lv_tmp /tmp
+-To make these logical volumes remount on reboot added these lines for each logical volume for file /etc/fstab:
+	-/dev/vg_new/lv_home	/home	xfs	noatime	0	2
+	-/dev/vg_new/lv_tmp	/tmp	xfs	noatime	0	2
+-Note: noatime used to keep reading accesses from updating to the atime info associated with the file, 0 is used to signify no backup of this file system, 2 signifies this file system has second level priority to get checked by fsck.
+At this point, have you actually freed up the disk blocks in the original filesystem?  If not, how can you free this no-longer-used storage in the root filesystem?
+	No, I have not freed up disk blocks on the original filesystem as the contents of the original /home/ and /tmp/ directories were never deleted and are still there just inaccessible. To free up this no longer used storage space in the root filesystem I can simply unmount the logical volumes to access the original directories and delete thier conents, then remount the logical volumes and the space should be clear now.
