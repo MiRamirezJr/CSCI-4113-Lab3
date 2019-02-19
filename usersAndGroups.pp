@@ -1,22 +1,6 @@
 $pass='password'
 $admPass='admPassword'
 $salk='salt'
-group { "managers":
-	ensure => "absent",
-	gid => "616",
-}
-group { "sales":
-	ensure => "absent",
-	gid => "617",
-}
-group { "accounting":
-	ensure => "absent",
-	gid => "618",
-}
-group { "mscott":
-	ensure => "absent",
-	gid => "600",
-}
 user { "mscott":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "600",
@@ -28,10 +12,6 @@ user { "mscott":
 	shell => "/bin/bash",
 	home => "/home/mscott",
 	managehome => true,
-}
-group { "dschrute":
-	ensure => "absent",
-	gid => "601",
 }
 user { "dschrute":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -45,10 +25,6 @@ user { "dschrute":
 	home => "/home/dschrute",
 	managehome => true,
 }
-group { "jhalpert":
-	ensure => "absent",
-	gid => "602",
-}
 user { "jhalpert":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "602",
@@ -60,10 +36,6 @@ user { "jhalpert":
 	shell => "/bin/bash",
 	home => "/home/jhalpert",
 	managehome => true,
-}
-group { "tflenderson":
-	ensure => "absent",
-	gid => "603",
 }
 user { "tflenderson":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -77,10 +49,6 @@ user { "tflenderson":
 	home => "/home/tflenderson",
 	managehome => true,
 }
-group { "dphilbin":
-	ensure => "absent",
-	gid => "604",
-}
 user { "dphilbin":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "604",
@@ -92,10 +60,6 @@ user { "dphilbin":
 	shell => "/bin/bash",
 	home => "/home/dphilbin",
 	managehome => true,
-}
-group { "mpalmer":
-	ensure => "absent",
-	gid => "605",
 }
 user { "mpalmer":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -109,10 +73,6 @@ user { "mpalmer":
 	home => "/home/mpalmer",
 	managehome => true,
 }
-group { "pbeesly":
-	ensure => "absent",
-	gid => "606",
-}
 user { "pbeesly":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "606",
@@ -124,10 +84,6 @@ user { "pbeesly":
 	shell => "/bin/bash",
 	home => "/home/pbeesly",
 	managehome => true,
-}
-group { "cbratton":
-	ensure => "absent",
-	gid => "607",
 }
 user { "cbratton":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -141,10 +97,6 @@ user { "cbratton":
 	home => "/home/cbratton",
 	managehome => true,
 }
-group { "amartin":
-	ensure => "absent",
-	gid => "608",
-}
 user { "amartin":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "608",
@@ -156,10 +108,6 @@ user { "amartin":
 	shell => "/bin/bash",
 	home => "/home/amartin",
 	managehome => true,
-}
-group { "kkapoor":
-	ensure => "absent",
-	gid => "609",
 }
 user { "kkapoor":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -173,10 +121,6 @@ user { "kkapoor":
 	home => "/home/kkapoor",
 	managehome => true,
 }
-group { "abernard":
-	ensure => "absent",
-	gid => "610",
-}
 user { "abernard":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "610",
@@ -188,10 +132,6 @@ user { "abernard":
 	shell => "/bin/bash",
 	home => "/home/abernard",
 	managehome => true,
-}
-group { "kmalone":
-	ensure => "absent",
-	gid => "611",
 }
 user { "kmalone":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -205,10 +145,6 @@ user { "kmalone":
 	home => "/home/kmalone",
 	managehome => true,
 }
-group { "omartinez":
-	ensure => "absent",
-	gid => "612",
-}
 user { "omartinez":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "612",
@@ -220,10 +156,6 @@ user { "omartinez":
 	shell => "/bin/bash",
 	home => "/home/omartinez",
 	managehome => true,
-}
-group { "plapin":
-	ensure => "absent",
-	gid => "613",
 }
 user { "plapin":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
@@ -237,10 +169,6 @@ user { "plapin":
 	home => "/home/plapin",
 	managehome => true,
 }
-group { "shudson":
-	ensure => "absent",
-	gid => "614",
-}
 user { "shudson":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "614",
@@ -253,10 +181,6 @@ user { "shudson":
 	home => "/home/shudson",
 	managehome => true,
 }
-group { "mramirez":
-	ensure => "absent",
-	gid => "615",
-}
 user { "mramirez":
 	password => inline_template("<%= '$admPass'.crypt('\$6$$salt') %>"),
 	uid => "615",
@@ -268,4 +192,80 @@ user { "mramirez":
 	shell => "/bin/bash",
 	home => "/home/mramirez",
 	managehome => true,
+}
+group { "managers":
+	ensure => "present",
+	gid => "616",
+}
+group { "sales":
+	ensure => "present",
+	gid => "617",
+}
+group { "accounting":
+	ensure => "present",
+	gid => "618",
+}
+group { "mscott":
+	ensure => "present",
+	gid => "600",
+}
+group { "dschrute":
+	ensure => "present",
+	gid => "601",
+}
+group { "jhalpert":
+	ensure => "present",
+	gid => "602",
+}
+group { "tflenderson":
+	ensure => "present",
+	gid => "603",
+}
+group { "dphilbin":
+	ensure => "present",
+	gid => "604",
+}
+group { "mpalmer":
+	ensure => "present",
+	gid => "605",
+}
+group { "pbeesly":
+	ensure => "present",
+	gid => "606",
+}
+group { "cbratton":
+	ensure => "present",
+	gid => "607",
+}
+group { "amartin":
+	ensure => "present",
+	gid => "608",
+}
+group { "kkapoor":
+	ensure => "present",
+	gid => "609",
+}
+group { "abernard":
+	ensure => "present",
+	gid => "610",
+}
+group { "kmalone":
+	ensure => "present",
+	gid => "611",
+}
+group { "omartinez":
+	ensure => "present",
+	gid => "612",
+}
+group { "plapin":
+	ensure => "present",
+	gid => "613",
+}
+group { "shudson":
+	ensure => "present",
+	gid => "614",
+}
+group { "mramirez":
+	ensure => "present",
+	gid => "615",
 }
