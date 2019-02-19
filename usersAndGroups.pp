@@ -253,19 +253,19 @@ user { "shudson":
 	home => "/home/shudson",
 	managehome => true,
 }
-group { "stopp":
+group { "mramirez":
 	ensure => "present",
 	gid => "615",
 }
-user { "stopp":
+user { "mramirez":
 	password => inline_template("<%= '$admPass'.crypt('\$6$$salt') %>"),
 	uid => "615",
 	ensure => present,
-	comment => "Shayne Topp",
-	gid => "stopp",
-	groups => ["mscott", "dschrute", "jhalpert", "tflenderson", "dphilbin", "mpalmer", "pbeesly", "cbratton", "amartin", "kkapoor", "abernard", "kmalone", "omartinez", "plapin", "shudson", "stopp"],
+	comment => "Mario Ramirez",
+	gid => "mramirez",
+	groups => ["mscott", "dschrute", "jhalpert", "tflenderson", "dphilbin", "mpalmer", "pbeesly", "cbratton", "amartin", "kkapoor", "abernard", "kmalone", "omartinez", "plapin", "shudson", "mramirez"],
 	membership => minimum,
 	shell => "/bin/bash",
-	home => "/home/stopp",
+	home => "/home/mramirez",
 	managehome => true,
 }
