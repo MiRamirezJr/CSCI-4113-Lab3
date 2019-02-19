@@ -1,6 +1,82 @@
 $pass='password'
 $admPass='admPassword'
 $salk='salt'
+group { "managers":
+	ensure => "absent",
+	gid => "616",
+}
+group { "sales":
+	ensure => "absent",
+	gid => "617",
+}
+group { "accounting":
+	ensure => "absent",
+	gid => "618",
+}
+group { "mscott":
+	ensure => "absent",
+	gid => "600",
+}
+group { "dschrute":
+	ensure => "absent",
+	gid => "601",
+}
+group { "jhalpert":
+	ensure => "absent",
+	gid => "602",
+}
+group { "tflenderson":
+	ensure => "absent",
+	gid => "603",
+}
+group { "dphilbin":
+	ensure => "absent",
+	gid => "604",
+}
+group { "mpalmer":
+	ensure => "absent",
+	gid => "605",
+}
+group { "pbeesly":
+	ensure => "absent",
+	gid => "606",
+}
+group { "cbratton":
+	ensure => "absent",
+	gid => "607",
+}
+group { "amartin":
+	ensure => "absent",
+	gid => "608",
+}
+group { "kkapoor":
+	ensure => "absent",
+	gid => "609",
+}
+group { "abernard":
+	ensure => "absent",
+	gid => "610",
+}
+group { "kmalone":
+	ensure => "absent",
+	gid => "611",
+}
+group { "omartinez":
+	ensure => "absent",
+	gid => "612",
+}
+group { "plapin":
+	ensure => "absent",
+	gid => "613",
+}
+group { "shudson":
+	ensure => "absent",
+	gid => "614",
+}
+group { "mramirez":
+	ensure => "absent",
+	gid => "615",
+}
 user { "mscott":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "600",
@@ -192,80 +268,4 @@ user { "mramirez":
 	shell => "/bin/bash",
 	home => "/home/mramirez",
 	managehome => true,
-}
-group { "managers":
-	ensure => "absent",
-	gid => "616",
-}
-group { "sales":
-	ensure => "absent",
-	gid => "617",
-}
-group { "accounting":
-	ensure => "absent",
-	gid => "618",
-}
-group { "mscott":
-	ensure => "absent",
-	gid => "600",
-}
-group { "dschrute":
-	ensure => "absent",
-	gid => "601",
-}
-group { "jhalpert":
-	ensure => "absent",
-	gid => "602",
-}
-group { "tflenderson":
-	ensure => "absent",
-	gid => "603",
-}
-group { "dphilbin":
-	ensure => "absent",
-	gid => "604",
-}
-group { "mpalmer":
-	ensure => "absent",
-	gid => "605",
-}
-group { "pbeesly":
-	ensure => "absent",
-	gid => "606",
-}
-group { "cbratton":
-	ensure => "absent",
-	gid => "607",
-}
-group { "amartin":
-	ensure => "absent",
-	gid => "608",
-}
-group { "kkapoor":
-	ensure => "absent",
-	gid => "609",
-}
-group { "abernard":
-	ensure => "absent",
-	gid => "610",
-}
-group { "kmalone":
-	ensure => "absent",
-	gid => "611",
-}
-group { "omartinez":
-	ensure => "absent",
-	gid => "612",
-}
-group { "plapin":
-	ensure => "absent",
-	gid => "613",
-}
-group { "shudson":
-	ensure => "absent",
-	gid => "614",
-}
-group { "mramirez":
-	ensure => "absent",
-	gid => "615",
 }
