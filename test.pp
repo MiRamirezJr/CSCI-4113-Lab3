@@ -1,6 +1,18 @@
 $pass='password'
 $admPass='admPassword'
 $salk='salt'
+group { "managers":
+	ensure => "present",
+	gid => "616",
+}
+group { "sales":
+	ensure => "present",
+	gid => "617",
+}
+group { "accounting":
+	ensure => "present",
+	gid => "618",
+}
 group { "mscott":
 	ensure => "present",
 	gid => "600",
@@ -11,7 +23,7 @@ user { "mscott":
 	ensure => present,
 	comment => "Michael Scott",
 	gid => "mscott",
-	groups => ["mscott"],
+	groups => ["mscott", "managers"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/mscott",
@@ -27,7 +39,7 @@ user { "dschrute":
 	ensure => present,
 	comment => "Dwight Schrute",
 	gid => "dschrute",
-	groups => ["dschrute"],
+	groups => ["dschrute", "managers"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/dschrute",
@@ -43,7 +55,7 @@ user { "jhalpert":
 	ensure => present,
 	comment => "Jim Halpert",
 	gid => "jhalpert",
-	groups => ["jhalpert"],
+	groups => ["jhalpert", "managers"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/jhalpert",
@@ -139,7 +151,7 @@ user { "amartin":
 	ensure => present,
 	comment => "Angela Martin",
 	gid => "amartin",
-	groups => ["amartin"],
+	groups => ["amartin", "accounting"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/amartin",
@@ -171,7 +183,7 @@ user { "abernard":
 	ensure => present,
 	comment => "Andy Bernard",
 	gid => "abernard",
-	groups => ["abernard"],
+	groups => ["abernard", "sales"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/abernard",
@@ -187,7 +199,7 @@ user { "kmalone":
 	ensure => present,
 	comment => "Kevin Malone",
 	gid => "kmalone",
-	groups => ["kmalone"],
+	groups => ["kmalone", "accounting"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/kmalone",
@@ -203,7 +215,7 @@ user { "omartinez":
 	ensure => present,
 	comment => "Oscar Martinez",
 	gid => "omartinez",
-	groups => ["omartinez"],
+	groups => ["omartinez", "accounting"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/omartinez",
@@ -219,7 +231,7 @@ user { "plapin":
 	ensure => present,
 	comment => "Phyllis Lapin",
 	gid => "plapin",
-	groups => ["plapin"],
+	groups => ["plapin", "sales"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/plapin",
@@ -235,7 +247,7 @@ user { "shudson":
 	ensure => present,
 	comment => "Stanley Hudson",
 	gid => "shudson",
-	groups => ["shudson"],
+	groups => ["shudson", "sales"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/shudson",
