@@ -297,4 +297,6 @@ file { '/home/accounting':
 	recurse => 'remote',
 }
 
-
+Other Notes:
+- Everything seemed to be in order, except the home directories on machine e that already existed with files in them, i.e. mscott, as
+the directory was changed to be owned by the appropriate group but the contents of the directory were not.
