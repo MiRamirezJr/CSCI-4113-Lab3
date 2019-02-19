@@ -1,40 +1,275 @@
-Create a new volume group;
--First, I needed to initiaize /dev/sdb as a physcial volume:
-	-pvcreate /dev/sdb
--create the new volume group "vg_new" built up of the phsyical volume I initialized:
-	-vgcreate vg_new /dev/sdb
-Create the logical volumes:
--created the logical volume "lv_home" and "lv_tmp" for home and tmp root directory with size of 4GB and 1GB, respectively:
-	-lvcreate -n lv_home --size 4g vg_new
-	-lvcreate -n lv_tmp --size 1g vg_new
-Make two xfs filessystmes:
--make the xfs filesystem for "lv_home" and "lv_tmp" logical volume:
-	-mkfs.xfs /dev/vg_new/lv_home
-	-mkfs.xfs /dev/vg_new/lv_tmp
-Mount the new filesystems to temporary mount points:
--first, make directories in root directory as temporary mounts for "lv_home" and "lv_tmp" logical volume:
-	-mkdir /tmpMount_home
-	-mkdir /tmpMount_tmp
--Now we can mount "lv_home" and "lv_tmp" logical volume:
-	-mount /dev/vg_new/lv_home /tmpMount_home
-	-mount /dev/vg_new/lv_tmp /tmpMount_tmp
-copy the existing contents from the old disk to the new filesystems:
--copied contents from /home and /tmp to appropriate logical volume using tags -r, for inclusion of directories, and -p, to keep files and directories attributes:
-	-cp -pr /home/. /tmpMount_home
-	-cp -pr /tmp/. /tmpMount_tmp
-mount the new logical volumes where they belong and update /etc/fstab so they are remounted there on reboot:
--Now, we can unmount the logical volumes since content has be copied to them:
-	-umount /dev/mapper/vg_new-lv_home
-	-umount /dev/mapper/vg_new-lv_tmp
--before we move on it's helpful to remove the temporary mount directories:
-	-rm -rf /tmpMount_home
-	-rm -rf /tmpMount_tmp
--Now we can mount appropriate logical volume to /home and /tmp directory:
-	-mount /dev/vg_new/lv_home /home
-	-mount /dev/vg_new/lv_tmp /tmp
--To make these logical volumes remount on reboot added these lines for each logical volume for file /etc/fstab:
-	-/dev/vg_new/lv_home	/home	xfs	noatime	0	2
-	-/dev/vg_new/lv_tmp	/tmp	xfs	noatime	0	2
--Note: noatime used to keep reading accesses from updating to the atime info associated with the file, 0 is used to signify no backup of this file system, 2 signifies this file system has second level priority to get checked by fsck.
-At this point, have you actually freed up the disk blocks in the original filesystem?  If not, how can you free this no-longer-used storage in the root filesystem?
-	No, I have not freed up disk blocks on the original filesystem as the contents of the original /home/ and /tmp/ directories were never deleted and are still there just inaccessible. To free up this no longer used storage space in the root filesystem I can simply unmount the logical volumes to access the original directories and delete thier conents, then remount the logical volumes and the space should be clear now.
+puppet manifest for users and group creation:
+$pass='password'
+$admPass='admPassword'
+$salk='salt'
+group { "managers":
+	ensure => "absent",
+	gid => "616",
+}
+group { "sales":
+	ensure => "absent",
+	gid => "617",
+}
+group { "accounting":
+	ensure => "absent",
+	gid => "618",
+}
+group { "mscott":
+	ensure => "absent",
+	gid => "600",
+}
+group { "dschrute":
+	ensure => "absent",
+	gid => "601",
+}
+group { "jhalpert":
+	ensure => "absent",
+	gid => "602",
+}
+group { "tflenderson":
+	ensure => "absent",
+	gid => "603",
+}
+group { "dphilbin":
+	ensure => "absent",
+	gid => "604",
+}
+group { "mpalmer":
+	ensure => "absent",
+	gid => "605",
+}
+group { "pbeesly":
+	ensure => "absent",
+	gid => "606",
+}
+group { "cbratton":
+	ensure => "absent",
+	gid => "607",
+}
+group { "amartin":
+	ensure => "absent",
+	gid => "608",
+}
+group { "kkapoor":
+	ensure => "absent",
+	gid => "609",
+}
+group { "abernard":
+	ensure => "absent",
+	gid => "610",
+}
+group { "kmalone":
+	ensure => "absent",
+	gid => "611",
+}
+group { "omartinez":
+	ensure => "absent",
+	gid => "612",
+}
+group { "plapin":
+	ensure => "absent",
+	gid => "613",
+}
+group { "shudson":
+	ensure => "absent",
+	gid => "614",
+}
+group { "mramirez":
+	ensure => "absent",
+	gid => "615",
+}
+user { "mscott":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "600",
+	ensure => absent,
+	comment => "Michael Scott",
+	gid => "mscott",
+	groups => ["mscott", "managers"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/mscott",
+	managehome => true,
+}
+user { "dschrute":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "601",
+	ensure => absent,
+	comment => "Dwight Schrute",
+	gid => "dschrute",
+	groups => ["dschrute", "managers"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/dschrute",
+	managehome => true,
+}
+user { "jhalpert":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "602",
+	ensure => absent,
+	comment => "Jim Halpert",
+	gid => "jhalpert",
+	groups => ["jhalpert", "managers"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/jhalpert",
+	managehome => true,
+}
+user { "tflenderson":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "603",
+	ensure => absent,
+	comment => "Toby Flenderson",
+	gid => "tflenderson",
+	groups => ["tflenderson"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/tflenderson",
+	managehome => true,
+}
+user { "dphilbin":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "604",
+	ensure => absent,
+	comment => "Darryl Philbin",
+	gid => "dphilbin",
+	groups => ["dphilbin"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/dphilbin",
+	managehome => true,
+}
+user { "mpalmer":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "605",
+	ensure => absent,
+	comment => "Meredith Palmer",
+	gid => "mpalmer",
+	groups => ["mpalmer"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/mpalmer",
+	managehome => true,
+}
+user { "pbeesly":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "606",
+	ensure => absent,
+	comment => "Pam Beesly",
+	gid => "pbeesly",
+	groups => ["pbeesly"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/pbeesly",
+	managehome => true,
+}
+user { "cbratton":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "607",
+	ensure => absent,
+	comment => "Creed Bratton",
+	gid => "cbratton",
+	groups => ["cbratton"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/cbratton",
+	managehome => true,
+}
+user { "amartin":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "608",
+	ensure => absent,
+	comment => "Angela Martin",
+	gid => "amartin",
+	groups => ["amartin", "accounting"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/amartin",
+	managehome => true,
+}
+user { "kkapoor":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "609",
+	ensure => absent,
+	comment => "Kelly Kapoor",
+	gid => "kkapoor",
+	groups => ["kkapoor"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/kkapoor",
+	managehome => true,
+}
+user { "abernard":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "610",
+	ensure => absent,
+	comment => "Andy Bernard",
+	gid => "abernard",
+	groups => ["abernard", "sales"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/abernard",
+	managehome => true,
+}
+user { "kmalone":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "611",
+	ensure => absent,
+	comment => "Kevin Malone",
+	gid => "kmalone",
+	groups => ["kmalone", "accounting"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/kmalone",
+	managehome => true,
+}
+user { "omartinez":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "612",
+	ensure => absent,
+	comment => "Oscar Martinez",
+	gid => "omartinez",
+	groups => ["omartinez", "accounting"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/omartinez",
+	managehome => true,
+}
+user { "plapin":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "613",
+	ensure => absent,
+	comment => "Phyllis Lapin",
+	gid => "plapin",
+	groups => ["plapin", "sales"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/plapin",
+	managehome => true,
+}
+user { "shudson":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "614",
+	ensure => absent,
+	comment => "Stanley Hudson",
+	gid => "shudson",
+	groups => ["shudson", "sales"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/shudson",
+	managehome => true,
+}
+user { "mramirez":
+	password => inline_template("<%= '$admPass'.crypt('\$6$$salt') %>"),
+	uid => "615",
+	ensure => absent,
+	comment => "Mario Ramirez",
+	gid => "mramirez",
+	groups => ["mscott", "dschrute", "jhalpert", "tflenderson", "dphilbin", "mpalmer", "pbeesly", "cbratton", "amartin", "kkapoor", "abernard", "kmalone", "omartinez", "plapin", "shudson", "mramirez"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/mramirez",
+	managehome => true,
+}
+
+Manifest for group directory creation:
+
