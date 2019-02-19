@@ -20,3 +20,9 @@ user { "dehus":
 	home => "/home/dehus",
 	managehome => true,
 }
+file { '/tmp/testdir':
+	ensure => "directory",
+	owner => 'root',
+	group => 'admins',
+	mode => '2775',
+}
