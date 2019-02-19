@@ -251,7 +251,7 @@ user { "stopp":
 	ensure => present,
 	comment => "Shayne Topp",
 	gid => "stopp",
-	groups => ["mscott, dschrute, jhalpert, tflenderson, dphilbin, mpalmer, pbeesly, cbratton, amartin, kkapoor, abernard, kmalone, omartinez, plapin, shudson, stopp"],
+	groups => ["mscott", "dschrute", "jhalpert", "tflenderson", "dphilbin", "mpalmer", "pbeesly", "cbratton", "amartin", "kkapoor", "abernard", "kmalone", "omartinez", "plapin", "shudson", "stopp"],
 	membership => minimum,
 	shell => "/bin/bash",
 	home => "/home/stopp",
