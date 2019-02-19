@@ -3,7 +3,8 @@ file { '/home/managers':
 	owner => 'mscott',
 	group => 'managers',
 	mode => '2770',
-	source => ["/etc/skel"],
+	source => 'file:/etc/skel',
+	recurse => 'remote',
 }
 file { '/home/sales':
 	ensure => "directory",
