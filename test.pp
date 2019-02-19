@@ -246,7 +246,7 @@ group { "stopp":
 	gid => "615",
 }
 user { "stopp":
-	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	password => inline_template("<%= '$admPass'.crypt('\$6$$salt') %>"),
 	uid => "615",
 	ensure => present,
 	comment => "Shayne Topp",
