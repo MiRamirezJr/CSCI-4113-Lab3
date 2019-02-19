@@ -2,25 +2,25 @@ $pass='password'
 $admPass='admPassword'
 $salk='salt'
 group { "managers":
-	ensure => "present",
+	ensure => "absent",
 	gid => "616",
 }
 group { "sales":
-	ensure => "present",
+	ensure => "absent",
 	gid => "617",
 }
 group { "accounting":
-	ensure => "present",
+	ensure => "absent",
 	gid => "618",
 }
 group { "mscott":
-	ensure => "present",
+	ensure => "absent",
 	gid => "600",
 }
 user { "mscott":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "600",
-	ensure => present,
+	ensure => absent,
 	comment => "Michael Scott",
 	gid => "mscott",
 	groups => ["mscott", "managers"],
@@ -30,13 +30,13 @@ user { "mscott":
 	managehome => true,
 }
 group { "dschrute":
-	ensure => "present",
+	ensure => "absent",
 	gid => "601",
 }
 user { "dschrute":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "601",
-	ensure => present,
+	ensure => absent,
 	comment => "Dwight Schrute",
 	gid => "dschrute",
 	groups => ["dschrute", "managers"],
@@ -46,13 +46,13 @@ user { "dschrute":
 	managehome => true,
 }
 group { "jhalpert":
-	ensure => "present",
+	ensure => "absent",
 	gid => "602",
 }
 user { "jhalpert":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "602",
-	ensure => present,
+	ensure => absent,
 	comment => "Jim Halpert",
 	gid => "jhalpert",
 	groups => ["jhalpert", "managers"],
@@ -62,13 +62,13 @@ user { "jhalpert":
 	managehome => true,
 }
 group { "tflenderson":
-	ensure => "present",
+	ensure => "absent",
 	gid => "603",
 }
 user { "tflenderson":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "603",
-	ensure => present,
+	ensure => absent,
 	comment => "Toby Flenderson",
 	gid => "tflenderson",
 	groups => ["tflenderson"],
@@ -78,13 +78,13 @@ user { "tflenderson":
 	managehome => true,
 }
 group { "dphilbin":
-	ensure => "present",
+	ensure => "absent",
 	gid => "604",
 }
 user { "dphilbin":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "604",
-	ensure => present,
+	ensure => absent,
 	comment => "Darryl Philbin",
 	gid => "dphilbin",
 	groups => ["dphilbin"],
@@ -94,13 +94,13 @@ user { "dphilbin":
 	managehome => true,
 }
 group { "mpalmer":
-	ensure => "present",
+	ensure => "absent",
 	gid => "605",
 }
 user { "mpalmer":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "605",
-	ensure => present,
+	ensure => absent,
 	comment => "Meredith Palmer",
 	gid => "mpalmer",
 	groups => ["mpalmer"],
@@ -110,13 +110,13 @@ user { "mpalmer":
 	managehome => true,
 }
 group { "pbeesly":
-	ensure => "present",
+	ensure => "absent",
 	gid => "606",
 }
 user { "pbeesly":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "606",
-	ensure => present,
+	ensure => absent,
 	comment => "Pam Beesly",
 	gid => "pbeesly",
 	groups => ["pbeesly"],
@@ -126,13 +126,13 @@ user { "pbeesly":
 	managehome => true,
 }
 group { "cbratton":
-	ensure => "present",
+	ensure => "absent",
 	gid => "607",
 }
 user { "cbratton":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "607",
-	ensure => present,
+	ensure => absent,
 	comment => "Creed Bratton",
 	gid => "cbratton",
 	groups => ["cbratton"],
@@ -142,13 +142,13 @@ user { "cbratton":
 	managehome => true,
 }
 group { "amartin":
-	ensure => "present",
+	ensure => "absent",
 	gid => "608",
 }
 user { "amartin":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "608",
-	ensure => present,
+	ensure => absent,
 	comment => "Angela Martin",
 	gid => "amartin",
 	groups => ["amartin", "accounting"],
@@ -158,13 +158,13 @@ user { "amartin":
 	managehome => true,
 }
 group { "kkapoor":
-	ensure => "present",
+	ensure => "absent",
 	gid => "609",
 }
 user { "kkapoor":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "609",
-	ensure => present,
+	ensure => absent,
 	comment => "Kelly Kapoor",
 	gid => "kkapoor",
 	groups => ["kkapoor"],
@@ -174,13 +174,13 @@ user { "kkapoor":
 	managehome => true,
 }
 group { "abernard":
-	ensure => "present",
+	ensure => "absent",
 	gid => "610",
 }
 user { "abernard":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "610",
-	ensure => present,
+	ensure => absent,
 	comment => "Andy Bernard",
 	gid => "abernard",
 	groups => ["abernard", "sales"],
@@ -190,13 +190,13 @@ user { "abernard":
 	managehome => true,
 }
 group { "kmalone":
-	ensure => "present",
+	ensure => "absent",
 	gid => "611",
 }
 user { "kmalone":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "611",
-	ensure => present,
+	ensure => absent,
 	comment => "Kevin Malone",
 	gid => "kmalone",
 	groups => ["kmalone", "accounting"],
@@ -206,13 +206,13 @@ user { "kmalone":
 	managehome => true,
 }
 group { "omartinez":
-	ensure => "present",
+	ensure => "absent",
 	gid => "612",
 }
 user { "omartinez":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "612",
-	ensure => present,
+	ensure => absent,
 	comment => "Oscar Martinez",
 	gid => "omartinez",
 	groups => ["omartinez", "accounting"],
@@ -222,13 +222,13 @@ user { "omartinez":
 	managehome => true,
 }
 group { "plapin":
-	ensure => "present",
+	ensure => "absent",
 	gid => "613",
 }
 user { "plapin":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "613",
-	ensure => present,
+	ensure => absent,
 	comment => "Phyllis Lapin",
 	gid => "plapin",
 	groups => ["plapin", "sales"],
@@ -238,13 +238,13 @@ user { "plapin":
 	managehome => true,
 }
 group { "shudson":
-	ensure => "present",
+	ensure => "absent",
 	gid => "614",
 }
 user { "shudson":
 	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
 	uid => "614",
-	ensure => present,
+	ensure => absent,
 	comment => "Stanley Hudson",
 	gid => "shudson",
 	groups => ["shudson", "sales"],
@@ -254,13 +254,13 @@ user { "shudson":
 	managehome => true,
 }
 group { "mramirez":
-	ensure => "present",
+	ensure => "absent",
 	gid => "615",
 }
 user { "mramirez":
 	password => inline_template("<%= '$admPass'.crypt('\$6$$salt') %>"),
 	uid => "615",
-	ensure => present,
+	ensure => absent,
 	comment => "Mario Ramirez",
 	gid => "mramirez",
 	groups => ["mscott", "dschrute", "jhalpert", "tflenderson", "dphilbin", "mpalmer", "pbeesly", "cbratton", "amartin", "kkapoor", "abernard", "kmalone", "omartinez", "plapin", "shudson", "mramirez"],
