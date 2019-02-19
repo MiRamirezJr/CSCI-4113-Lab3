@@ -241,3 +241,19 @@ user { "shudson":
 	home => "/home/shudson",
 	managehome => true,
 }
+group { "stopp":
+	ensure => "present",
+	gid => "615",
+}
+user { "stopp":
+	password => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+	uid => "615",
+	ensure => present,
+	comment => "Shayne Topp",
+	gid => "stopp",
+	groups => ["mscott, dschrute, jhalpert, tflenderson, dphilbin, mpalmer, pbeesly, cbratton, amartin, kkapoor, abernard, kmalone, omartinez, plapin, shudson, stopp"],
+	membership => minimum,
+	shell => "/bin/bash",
+	home => "/home/stopp",
+	managehome => true,
+}
