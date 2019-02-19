@@ -194,78 +194,78 @@ user { "mramirez":
 	managehome => true,
 }
 group { "managers":
-	ensure => "present",
+	ensure => "absent",
 	gid => "616",
 }
 group { "sales":
-	ensure => "present",
+	ensure => "absent",
 	gid => "617",
 }
 group { "accounting":
-	ensure => "present",
+	ensure => "absent",
 	gid => "618",
 }
 group { "mscott":
-	ensure => "present",
+	ensure => "absent",
 	gid => "600",
 }
 group { "dschrute":
-	ensure => "present",
+	ensure => "absent",
 	gid => "601",
 }
 group { "jhalpert":
-	ensure => "present",
+	ensure => "absent",
 	gid => "602",
 }
 group { "tflenderson":
-	ensure => "present",
+	ensure => "absent",
 	gid => "603",
 }
 group { "dphilbin":
-	ensure => "present",
+	ensure => "absent",
 	gid => "604",
 }
 group { "mpalmer":
-	ensure => "present",
+	ensure => "absent",
 	gid => "605",
 }
 group { "pbeesly":
-	ensure => "present",
+	ensure => "absent",
 	gid => "606",
 }
 group { "cbratton":
-	ensure => "present",
+	ensure => "absent",
 	gid => "607",
 }
 group { "amartin":
-	ensure => "present",
+	ensure => "absent",
 	gid => "608",
 }
 group { "kkapoor":
-	ensure => "present",
+	ensure => "absent",
 	gid => "609",
 }
 group { "abernard":
-	ensure => "present",
+	ensure => "absent",
 	gid => "610",
 }
 group { "kmalone":
-	ensure => "present",
+	ensure => "absent",
 	gid => "611",
 }
 group { "omartinez":
-	ensure => "present",
+	ensure => "absent",
 	gid => "612",
 }
 group { "plapin":
-	ensure => "present",
+	ensure => "absent",
 	gid => "613",
 }
 group { "shudson":
-	ensure => "present",
+	ensure => "absent",
 	gid => "614",
 }
 group { "mramirez":
-	ensure => "present",
+	ensure => "absent",
 	gid => "615",
 }
